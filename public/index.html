@@ -1,0 +1,30 @@
+<!DOCTYPE html> 
+<html>
+  <head>
+    <!-- head tag section is for meta info and dependencies -->
+    <title>Login Github</title>
+  </head>
+  <body>
+    <a id="oauth" href="#">Login with Github</a>
+  </body>
+  <script>
+    // this is the github login/signup page
+    const URL = 'https://github.com/login/oauth/authorize';
+
+    const options = {
+      client_id: '5e3e0e202b83cce773ac',
+      redirect_uri: 'http://localhost:3000/oauth',
+      scope: 'read:user',
+      state: '401appconsent' // can be anything
+    }
+
+    const qs = Object.keys(options).map(key => {
+      return `${key}=` + encodeURIComponent(options[key]);
+    }).join('&');
+
+    const authURL = `${URL}?${qs}`;
+
+    const link = document.getElementById('oauth');
+    link.setAttribute('href', authURL);
+  </script>
+</html>
